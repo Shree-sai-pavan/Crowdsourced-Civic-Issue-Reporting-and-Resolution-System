@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JanSamadhaan - Smart City Civic Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+   
+</head>
+<body>
+<h2>JanSamadhaan Login</h2>
+    <!-- Login Container -->
+    <div id="loginContainer" class="app-container active">
+
+        <!-- Scrolling Notification Ticker -->
+        <div class="login-ticker-wrap">
+            <div class="login-ticker-label">🔔 LIVE UPDATES</div>
+            <div class="login-ticker-track-wrap">
+                <div class="login-ticker-track" id="loginTickerTrack">
+                    <span class="login-ticker-item">Welcome to JanSamadhaan – Smart City Civic Platform</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-container">
+            <div class="login-box">
+                <div class="logo">🏛️</div>
+                <h1 class="app-title">JanSamadhaan</h1>
+                <p class="app-subtitle">Smart City Civic Platform</p>
+                
+                <div class="login-tabs">
+                    <button class="login-tab active" onclick="switchLoginTab('citizen')">Citizen Login</button>
+                    <button class="login-tab" onclick="switchLoginTab('municipal')">Municipal Login</button>
+                </div>
+                
+                <!-- Citizen Login Form -->
+                <form id="citizenLoginForm" class="login-form active">
+                    <div class="form-group">
+                       <label for="citizenUsername">Username</label>
+                    <input type="text" id="citizenUsername" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="citizenPassword">Password</label>
+                        <input type="password" id="citizenPassword" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Login as Citizen</button>
+                    <p class="signup-link">Don't have an account? <a href="#" onclick="showSignup('citizen')">Sign up here</a></p>
+                </form>
+                
+                <!-- Municipal Login Form -->
+                <form id="municipalLoginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="municipalId">Employee ID</label>
+                        <input type="text" id="municipalId" placeholder="Enter your employee ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="municipalPassword">Password</label>
+                        <input type="password" id="municipalPassword" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Login as Municipal Officer</button>
+                </form>
+            </div>
+        </div>
+    </div>when 
+
+    <!-- Citizen App Container -->
+    <div id="citizenApp" class="app-container">
+        <div class="app-header">
+            <div class="header-content">
+                <div class="header-logo">
+                    <h1>🏛️ JanSamadhaan</h1>
+                </div>
+              <div class="user-info">
+    <div class="user-profile">
+        <div class="user-avatar" id="citizenAvatar">C</div>
+        <div>
+            <div style="font-weight: 600;" id="citizenName">Citizen User</div>
+            <div style="font-size: 0.8rem; opacity: 0.8;">Public User</div>
+        </div>
+    </div>
+    <!-- Notification Bell for Citizen -->
+    <div class="notif-bell-wrapper" id="citizenBellWrapper">
+        <button class="notif-bell-btn" onclick="toggleNotifPanel('citizen')" title="Notifications">
+            🔔
+            <span class="notif-count" id="citizenNotifCount" style="display:none;">0</span>
+        </button>
+        <div class="notif-panel" id="citizenNotifPanel">
+            <div class="notif-panel-header">
+                <span>🔔 Notifications</span>
+                <button onclick="clearNotifications('citizen')" class="notif-clear-btn">Clear All</button>
+            </div>
+            <div class="notif-list" id="citizenNotifList">
+                <div class="notif-empty">No notifications yet</div>
+            </div>
+        </div>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <div class="citizen-dashboard">
+                <nav class="dashboard-nav">
+                    <button class="nav-tab active" onclick="switchTab('newReport')">📝 New Report</button>
+                    <button class="nav-tab" onclick="switchTab('trackReport')">🔍 Track Report</button>
+                    <button class="nav-tab" onclick="switchTab('myReports')">📋 My Reports</button>
+                    <button class="nav-tab notif-tab-btn" onclick="switchTab('liveUpdatesCitizen')">📢 Live Updates</button>
+                </nav>
+
+                <!-- New Report Section -->
+                <div id="newReport" class="dashboard-content active">
+                    <div class="report-form">
+                        <div class="form-section">
+                            <h2 class="section-title">Report New Issue</h2>
+                            
+                            <div class="input-group">
+                                <label>Select Category</label>
+                                <div class="categories-grid">
+                                    <div class="category-card" data-category="road">🛣️ Road & Traffic</div>
+                                    <div class="category-card" data-category="water">💧 Water Supply</div>
+                                    <div class="category-card" data-category="waste">🗑️ Waste Management</div>
+                                    <div class="category-card" data-category="electricity">⚡ Electricity</div>
+                                    <div class="category-card" data-category="drainage">🌊 Drainage</div>
+                                    <div class="category-card" data-category="sanitation">🧹 Sanitation</div>
+                                    <div class="category-card" data-category="parks">🌳 Parks & Recreation</div>
+                                    <div class="category-card" data-category="streetlight">💡 Street Lighting</div>
+                                    <div class="category-card" data-category="noise">🔊 Noise Pollution</div>
+                                    <div class="category-card" data-category="air">🌫️ Air Pollution</div>
+                                    <div class="category-card" data-category="building">🏗️ Building Violations</div>
+                                    <div class="category-card" data-category="animal">🐕 Stray Animals</div>
+                                    <div class="category-card" data-category="public">🚻 Public Facilities</div>
+                                    <div class="category-card" data-category="health">🏥 Public Health</div>
+                                    <div class="category-card" data-category="security">🚔 Public Safety</div>
+                                    <div class="category-card" data-category="other">📋 Other Issues</div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label for="issueTitle">Issue Title *</label>
+                                    <input type="text" id="issueTitle" placeholder="Brief description of the issue" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="priority">Priority Level *</label>
+                                    <select id="priority" required>
+                                        <option value="">Select Priority</option>
+                                        <option value="low">Low</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="high">High</option>
+                                        <option value="critical">Critical</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="description">Detailed Description *</label>
+                                <textarea id="description" rows="4" placeholder="Provide detailed information about the issue..." required></textarea>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label for="location">Location *</label>
+                                    <input type="text" id="location" placeholder="Enter location address" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="contactPhone">Contact Phone</label>
+                                    <input type="tel" id="contactPhone" placeholder="Your contact number">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label for="issueImage">Upload Image (Optional)</label>
+                                    <input type="file" id="issueImage" accept="image/*" onchange="previewImage(event)">
+                                    <div id="imagePreview" style="margin-top: 10px; display: none;">
+                                        <img id="previewImg" style="max-width: 200px; max-height: 200px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="btn" onclick="submitReport()">Submit Report</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Live Updates Section (Citizen) -->
+                <div id="liveUpdatesCitizen" class="dashboard-content">
+                    <div class="live-updates-section">
+                        <h2 class="section-title">📢 Live Updates</h2>
+                        <p class="live-updates-desc">Post a public update or announcement visible to everyone on the login page ticker.</p>
+                        <div class="live-update-form">
+                            <div class="input-group">
+                                <label for="citizenUpdateIcon">Update Type</label>
+                                <select id="citizenUpdateIcon">
+                                    <option value="📢">📢 Announcement</option>
+                                    <option value="⚠️">⚠️ Alert</option>
+                                    <option value="ℹ️">ℹ️ Information</option>
+                                    <option value="✅">✅ Good News</option>
+                                    <option value="🚧">🚧 Work in Progress</option>
+                                    <option value="🙏">🙏 Request</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="citizenUpdateTitle">Update Title *</label>
+                                <input type="text" id="citizenUpdateTitle" placeholder="e.g. Road blocked near MG Road" maxlength="60">
+                            </div>
+                            <div class="input-group">
+                                <label for="citizenUpdateMsg">Message *</label>
+                                <textarea id="citizenUpdateMsg" rows="3" placeholder="Describe the update in detail..." maxlength="200"></textarea>
+                            </div>
+                            <button class="btn" onclick="postLiveUpdate('citizen')">📤 Post to Live Ticker</button>
+                        </div>
+                        <h3 style="margin-top:28px;">Recent Updates</h3>
+                        <div id="liveUpdatesCitizenList" class="live-updates-list"></div>
+                    </div>
+                </div>
+
+                <!-- Track Report Section -->
+
+                <!-- Track Report Section -->
+                <div id="trackReport" class="dashboard-content">
+                    <div class="track-section">
+                        <h2 class="section-title">Track Your Report</h2>
+                        <p>Enter your report ID to check the status</p>
+                        
+                        <div class="track-input">
+                            <input type="text" id="trackingId" placeholder="JSM-YYYYMMDD-XXXX" maxlength="20">
+                            <button class="btn" onclick="trackReportStatus()">Track Report</button>
+                        </div>
+                        
+                        <div id="trackResult" class="track-result">
+                            <div id="reportInfo"></div>
+                            <div class="status-timeline">
+                                <div class="status-step" data-status="submitted">📝</div>
+                                <div class="status-step" data-status="assigned">👥</div>
+                                <div class="status-step" data-status="progress">🔄</div>
+                                <div class="status-step" data-status="completed">✅</div>
+                            </div>
+                            <div id="statusDetails"></div>
+                            <div id="completionDetails"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My Reports Section -->
+                <div id="myReports" class="dashboard-content">
+                    <h2 class="section-title">My Reports</h2>
+                    <div id="userReportsList">
+                        <p style="text-align: center; color: #666; padding: 40px;">No reports submitted yet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Municipal App Container -->
+    <div id="municipalApp" class="app-container">
+        <div class="app-header">
+            <div class="header-content">
+                <div class="header-logo">
+                    <h1>🏛️ JanSamadhaan - Municipal Dashboard</h1>
+                </div>
+               <div class="user-info">
+    <div class="user-profile">
+        <div class="user-avatar" id="municipalAvatar">M</div>
+        <div>
+            <div style="font-weight: 600;" id="municipalName">A R Likith</div>
+            <div style="font-size: 0.8rem; opacity: 0.8;">Administrative User</div>
+        </div>
+    </div>
+    <!-- Notification Bell for Municipal -->
+    <div class="notif-bell-wrapper" id="municipalBellWrapper">
+        <button class="notif-bell-btn" onclick="toggleNotifPanel('municipal')" title="Notifications">
+            🔔
+            <span class="notif-count" id="municipalNotifCount" style="display:none;">0</span>
+        </button>
+        <div class="notif-panel" id="municipalNotifPanel">
+            <div class="notif-panel-header">
+                <span>🔔 Notifications</span>
+                <button onclick="clearNotifications('municipal')" class="notif-clear-btn">Clear All</button>
+            </div>
+            <div class="notif-list" id="municipalNotifList">
+                <div class="notif-empty">No notifications yet</div>
+            </div>
+        </div>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <div class="municipal-dashboard">
+                <nav class="dashboard-nav">
+                    <button class="nav-tab active" onclick="switchMunicipalTab('overview')">📊 Overview</button>
+                    <button class="nav-tab" onclick="switchMunicipalTab('allReports')">📋 All Reports</button>
+                    <button class="nav-tab" onclick="switchMunicipalTab('analytics')">📈 Analytics</button>
+                    <button class="nav-tab notif-tab-btn" onclick="switchMunicipalTab('liveUpdatesAdmin')">📢 Live Updates</button>
+                </nav>
+
+                <!-- Overview Section -->
+                <div id="overview" class="dashboard-content active">
+                    <div class="stats-grid">
+                        <div class="stat-card pending">
+                            <div class="stat-number" id="pendingCount">0</div>
+                            <div class="stat-label">Pending Reports</div>
+                        </div>
+                        <div class="stat-card progress">
+                            <div class="stat-number" id="progressCount">0</div>
+                            <div class="stat-label">In Progress</div>
+                        </div>
+                        <div class="stat-card completed">
+                            <div class="stat-number" id="completedCount">0</div>
+                            <div class="stat-label">Completed</div>
+                        </div>
+                        <div class="stat-card critical">
+                            <div class="stat-number" id="criticalCount">0</div>
+                            <div class="stat-label">Critical Issues</div>
+                        </div>
+                    </div>
+
+                    <h3>Recent Reports</h3>
+                    <table class="reports-table">
+                        <thead>
+                            <tr>
+                                <th>Report ID</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentReportsTable">
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- All Reports Section -->
+                <div id="allReports" class="dashboard-content">
+                    <h2 class="section-title">All Reports</h2>
+                    <table class="reports-table">
+                        <thead>
+                            <tr>
+                                <th>Report ID</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Submitted By</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allReportsTable">
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Analytics Section -->
+                <div id="analytics" class="dashboard-content">
+                    <h2 class="section-title">Analytics & Reports</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="avgResolutionTime">0</div>
+                            <div class="stat-label">Avg Resolution (Days)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">85%</div>
+                            <div class="stat-label">Satisfaction Rate</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalReports">0</div>
+                            <div class="stat-label">Total Reports</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+                <!-- Live Updates Section (Admin) -->
+                <div id="liveUpdatesAdmin" class="dashboard-content">
+                    <div class="live-updates-section">
+                        <h2 class="section-title">📢 Live Updates</h2>
+                        <p class="live-updates-desc">Post official announcements, alerts, or civic updates. They will scroll on the login page ticker visible to all visitors.</p>
+                        <div class="live-update-form">
+                            <div class="live-update-form-row">
+                                <div class="input-group">
+                                    <label for="adminUpdateIcon">Update Type</label>
+                                    <select id="adminUpdateIcon">
+                                        <option value="📢">📢 Official Announcement</option>
+                                        <option value="⚠️">⚠️ Alert / Warning</option>
+                                        <option value="🚧">🚧 Work in Progress</option>
+                                        <option value="✅">✅ Issue Resolved</option>
+                                        <option value="💧">💧 Water Supply</option>
+                                        <option value="⚡">⚡ Electricity</option>
+                                        <option value="🛣️">🛣️ Road & Traffic</option>
+                                        <option value="🗑️">🗑️ Waste Management</option>
+                                        <option value="ℹ️">ℹ️ General Info</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="adminUpdateTitle">Update Title *</label>
+                                    <input type="text" id="adminUpdateTitle" placeholder="e.g. Water supply disruption in Zone 4" maxlength="60">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="adminUpdateMsg">Message *</label>
+                                <textarea id="adminUpdateMsg" rows="3" placeholder="Provide full details of the update..." maxlength="200"></textarea>
+                            </div>
+                            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+                                <button class="btn" onclick="postLiveUpdate('admin')">📤 Post to Live Ticker</button>
+                                <button class="btn" style="background:#e74c3c;" onclick="clearAllLiveUpdates()">🗑️ Clear All Updates</button>
+                            </div>
+                        </div>
+                        <h3 style="margin-top:28px;">Posted Updates</h3>
+                        <div id="liveUpdatesAdminList" class="live-updates-list"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Report Details Modal -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Report Details</h2>
+                <button class="close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assignment Modal -->
+    <div id="assignmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Assign Report</h2>
+                <button class="close" onclick="closeAssignmentModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="assignmentForm">
+                    <form id="reportAssignmentForm">
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="assignDepartment">Department *</label>
+                                <select id="assignDepartment" required>
+                                    <option value="">Select Department</option>
+                                    <option value="Public Works">Public Works</option>
+                                    <option value="Water Department">Water Department</option>
+                                    <option value="Sanitation Department">Sanitation Department</option>
+                                    <option value="Electrical Department">Electrical Department</option>
+                                    <option value="Roads & Transport">Roads & Transport</option>
+                                    <option value="Environment Department">Environment Department</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="assignOfficer">Assigned Officer *</label>
+                                <select id="assignOfficer" required>
+                                    <option value="">Select Officer</option>
+                                    <!-- Options will be populated based on department selection -->
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="assignPriority">Priority Level</label>
+                                <select id="assignPriority">
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                    <option value="critical">Critical</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="expectedCompletion">Expected Completion Date *</label>
+                                <input type="date" id="expectedCompletion" required>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="assignmentNotes">Assignment Notes</label>
+                            <textarea id="assignmentNotes" rows="3" placeholder="Any specific instructions or notes for the assigned officer..."></textarea>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button type="button" class="btn" onclick="confirmAssignment()">Assign Report</button>
+                            <button type="button" class="btn" onclick="closeAssignmentModal()" style="background: #6c757d; margin-left: 10px;">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Completion Modal -->
+    <div id="completionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Complete Report</h2>
+                <button class="close" onclick="closeCompletionModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="completionForm">
+                    <form id="reportCompletionForm">
+                        <div class="input-group">
+                            <label for="workDescription">Work Completed Details *</label>
+                            <textarea id="workDescription" rows="4" placeholder="Describe the work that was completed to resolve this issue..." required></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="completionDate">Completion Date *</label>
+                                <input type="date" id="completionDate" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="completedBy">Completed By *</label>
+                                <input type="text" id="completedBy" placeholder="Name of person/team who completed the work" required>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="completionImage">Upload Completion Image(s)</label>
+                            <input type="file" id="completionImage" accept="image/*" multiple onchange="previewCompletionImages(event)">
+                            <small style="color: #666; display: block; margin-top: 5px;">Upload photos showing the completed work (optional but recommended)</small>
+                            <div id="completionImagePreview" style="margin-top: 10px; display: none;">
+                                <div id="previewImagesContainer" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="materialsUsed">Materials/Resources Used</label>
+                                <textarea id="materialsUsed" rows="2" placeholder="List materials, equipment, or resources used (optional)"></textarea>
+                            </div>
+                            <div class="input-group">
+                                <label for="costIncurred">Cost Incurred (₹)</label>
+                                <input type="number" id="costIncurred" placeholder="0" min="0" step="0.01">
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="additionalNotes">Additional Notes</label>
+                            <textarea id="additionalNotes" rows="3" placeholder="Any additional comments, recommendations, or follow-up actions needed..."></textarea>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button type="button" class="btn" onclick="confirmCompletion()">Mark as Completed</button>
+                            <button type="button" class="btn" onclick="closeCompletionModal()" style="background: #6c757d; margin-left: 10px;">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+<script src="dashboard.js"></script>
+    
+</body>
+</html>
